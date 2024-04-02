@@ -20,6 +20,6 @@ export class ProductListComponent {
   ngOnInit(): void {
     this.productService
       .getProductList()
-      .subscribe((res) => (this.products = res));
+      .subscribe(res => {this.products = res});
   }
 }

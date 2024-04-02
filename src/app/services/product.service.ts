@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-
   constructor(private http: HttpClient) {}
 
   getProductList(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:4200/assets/data.json');
   }
+
 }

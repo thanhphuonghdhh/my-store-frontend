@@ -1,10 +1,19 @@
 .header {
-  text-align: center;
-  background: #33B5E5;
-  color: #fff;
-  padding: 12px;
-}
+    text-align: center;
+    background: #33B5E5;
+    color: #fff;
+    padding: 12px;
+  }
+  
+  a {
+    color: #ffffff;
+  }
 
-a {
-  color: #ffffff;
-}
+  h1 {
+    color: #fff;
+  }
+
+  p {
+    margin-left: 5px;
+    margin-right: 5px
+  }

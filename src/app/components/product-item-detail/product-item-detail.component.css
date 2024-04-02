@@ -1,0 +1,16 @@
+img {
+  border-radius: 10px;
+  width: 320px;
+}
+
+nz-select {
+  width: 90px;
+}
+
+.detail-container {
+  margin: 50px;
+}
+
+.margin-top-2 {
+  margin-top: 2vh;
+}

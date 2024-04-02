@@ -1,6 +1,8 @@
-<div>
+<div class="margin-top-7">
   <nz-row nzJustify="center" nzAlign="middle">
-    <img nz-row class="product-image" src="{{ product.url }}" />
+    <a routerLink="product/{{ product.id }}">
+      <img nz-row class="product-image" src="{{ product.url }}" />
+    </a>
   </nz-row>
   <nz-row nzJustify="center" nzAlign="middle">
     <h4>{{ product.name }}</h4>
@@ -8,8 +10,14 @@
   <nz-row nzJustify="center" nzAlign="middle">
     <p>${{ product.price }}</p>
   </nz-row>
-  <nz-row nzJustify="center" nzAlign="middle">
-    <nz-select></nz-select>
+  <nz-row nzJustify="center" nzAlign="middle" class="margin-10">
+    <nz-select [(ngModel)]="selectedOption">
+      <nz-option
+        *ngFor="let option of options"
+        [nzValue]="option"
+        [nzLabel]="option"
+      ></nz-option>
+    </nz-select>
   </nz-row>
   <nz-row nzJustify="center" nzAlign="middle">
     <button nz-col nz-button nzType="primary">Add to cart</button>
