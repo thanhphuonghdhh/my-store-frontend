@@ -1,0 +1,17 @@
+img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.number-input {
+  margin-left: 10px;
+  width: 80px;
+}
+
+.cart-item-details {
+  margin-left: 80px;
+}
+
+.cart-item {
+  margin-bottom: 20px;
+}
