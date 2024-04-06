@@ -1,6 +1,6 @@
 # MyStoreFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2, using NG-ZORRO as UI component library
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2, using [NG-ZORRO](https://ng.ant.design/docs/introduce/en) as UI component library
 
 ## Development server
 
