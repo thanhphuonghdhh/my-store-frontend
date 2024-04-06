@@ -8,10 +8,30 @@ img {
   width: 80px;
 }
 
+.form-input {
+  width: 300px;
+  margin: 10px;
+  border: 2px groove;
+  border-color: #bbb;
+}
+
 .cart-item-details {
   margin-left: 80px;
 }
 
 .cart-item {
   margin-bottom: 20px;
+}
+
+.commit {
+  color: gray;
+}
+
+.cart-container {
+  margin: 10vh;
+}
+
+.warning-text {
+  color: red;
+  margin-left: 10px;
 }

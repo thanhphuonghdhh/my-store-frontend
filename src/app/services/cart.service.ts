@@ -1,41 +1,64 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/models';
+import { Product, UserInfo } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cart: Product[] = [
-    {
-      id: 1,
-      name: 'Book',
-      price: 9.99,
-      url: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      description: 'You can read it!',
-      quantity: 2
-    },
-    {
-      id: 2,
-      name: 'Headphones',
-      price: 249.99,
-      url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      description: 'Listen to stuff!',
-      quantity: 10
-    },
-  ];
-  constructor() {}
+  cart: Product[] = [];
+  user: UserInfo = {
+    address: '',
+    creditNumber: '',
+    userName: ''
+  }
+
+  constructor() {
+    const tmpCart = localStorage.getItem('cart');
+    if (tmpCart) this.cart = JSON.parse(tmpCart);
+  }
 
   getCart() {
     return this.cart;
   }
 
-  addToCart(product: Product, quantity: number) {
-    const existProduct = this.cart.find((p) => (p.id = product.id));
+  getTotalCost() {
+    let total = 0;
+    this.cart.forEach((product) => {
+      if (product.quantity) total += product.price * product.quantity;
+    });
+    
+    return parseFloat(total.toFixed(2));
+  }
 
+  removeProductInCart(product: Product) {
+    this.cart = this.cart.filter((item) => product.id !== item.id);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  updateCart(product: Product, quantity: number) {
+    const existProduct = this.cart.find((p) => p.id === product.id);
     if (existProduct) existProduct.quantity = quantity;
     else {
       product.quantity = quantity;
       this.cart.push(product);
     }
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  emptyCart() {
+    this.cart = [];
+    localStorage.removeItem('cart');
+  }
+
+  updateUser(user: UserInfo) {
+    this.user = user;
+  }
+
+  checkout(user: UserInfo) {
+    this.updateUser(user);
+  }
+
+  getUser() {
+    return this.user;
   }
 }

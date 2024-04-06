@@ -8,6 +8,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -23,7 +24,8 @@ export class ProductItemDetailComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +42,12 @@ export class ProductItemDetailComponent {
         });
       });
     });
+  }
+
+  updateCart(product: Product | undefined) {
+    if (product) {
+      this.cartService.updateCart(product, this.selectedOption)
+      alert('Added to cart!')
+    }
   }
 }

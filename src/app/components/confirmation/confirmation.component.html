@@ -1,0 +1,21 @@
+<nz-row nzJustify="center">
+  <h1 class="confirm-h">Success!</h1>
+</nz-row>
+<nz-row nzJustify="center" class="confirm-p">
+  <p>
+    Thank you, <b>{{ user.userName }}</b>
+  </p>
+</nz-row>
+<nz-row nzJustify="center" class="confirm-p">
+  <p>
+    Your <b>${{ total }}</b> order is confirmed!
+  </p>
+</nz-row>
+<nz-row nzJustify="center" class="confirm-p">
+  Please allow 1-3 business day(s) for shipping.
+</nz-row>
+<nz-row nzJustify="center" class="confirm-p">
+  <button nz-col nz-button nzType="primary" (click)="backToHomepage()">
+    Back to product list
+  </button>
+</nz-row>

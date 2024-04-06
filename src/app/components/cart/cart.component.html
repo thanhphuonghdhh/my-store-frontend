@@ -1,5 +1,5 @@
-<nz-row>
-  <nz-col>
+<nz-row nzJustify="center">
+  <nz-col class="cart-container">
     <nz-row class="cart-item" *ngFor="let product of cart" nzAlign="middle">
       <nz-col>
         <img nz-row class="img" src="{{ product.url }}" />
@@ -15,7 +15,8 @@
           Amount:
           <nz-input-number
             [(ngModel)]="product.quantity"
-            [nzMin]="1"
+            (ngModelChange)="onQuantityChange(product)"
+            [nzMin]="0"
             [nzMax]="10"
             [nzStep]="1"
             class="number-input"
@@ -24,11 +25,11 @@
       </nz-col>
     </nz-row>
     <nz-row>
-      <h1>Total: $</h1>
+      <h1>Total: ${{ total }}</h1>
     </nz-row>
   </nz-col>
-  <nz-col>
-    <form>
+  <nz-col class="cart-container">
+    <form #form="ngForm" (ngSubmit)="submitForm()">
       <nz-row> Full name </nz-row>
       <nz-row>
         <input
@@ -37,8 +38,18 @@
           placeholder="(minimum 3 characters)"
           required
           minlength="3"
-          [(ngModel)]="userName"
+          class="form-input"
+          [(ngModel)]="user.userName"
+          #name="ngModel"
         />
+      </nz-row>
+      <nz-row *ngIf="name.invalid && name.dirty" class="warning-text">
+        <div *ngIf="name.errors?.['required']">
+          Please provide full name.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          The full name must contain at least 3 characters.
+        </div>
       </nz-row>
       <nz-row> Address </nz-row>
       <nz-row>
@@ -48,8 +59,49 @@
           placeholder="(minimum 6 characters)"
           required
           minlength="6"
-          [(ngModel)]="address"
+          class="form-input"
+          #addr="ngModel"
+          [(ngModel)]="user.address"
         />
+      </nz-row>
+      <nz-row *ngIf="addr.invalid && addr.dirty" class="warning-text">
+        <div *ngIf="addr.errors?.['required']">
+          Please provide address.
+        </div>
+        <div *ngIf="addr.errors?.['minlength']">
+          The address must contain at least 6 characters.
+        </div>
+      </nz-row>
+      <nz-row> Credit card number </nz-row>
+      <nz-row>
+        <input
+          type="text"
+          name="creditNumber"
+          placeholder="(16-digit number)"
+          required
+          minlength="16"
+          maxlength="16"
+          pattern="[0-9]*" 
+          #credit="ngModel"
+          class="form-input"
+          [(ngModel)]="user.creditNumber"
+        />
+      </nz-row>
+      <nz-row *ngIf="credit.invalid && credit.dirty" class="warning-text">
+        <div *ngIf="credit.errors?.['required']">
+          Please provide credit cart number.
+        </div>
+        <div *ngIf="credit.errors?.['minlength'] || credit.errors?.['maxlength'] || credit.errors?.['pattern']">
+          The credit card number must contain 16-digit number.
+        </div>
+      </nz-row>
+      <nz-row>
+        <p class="commit">
+          We'll never share your payment details with anyone else
+        </p>
+      </nz-row>
+      <nz-row>
+        <button nz-button nzType="primary" [disabled]="form.invalid">Submit</button>
       </nz-row>
     </form>
   </nz-col>

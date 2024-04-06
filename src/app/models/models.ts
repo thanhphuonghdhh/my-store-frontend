@@ -6,3 +6,9 @@ export interface Product {
     description: string;
     quantity?: number;
 }
+
+export interface UserInfo {
+    userName: string;
+    address: string;
+    creditNumber: string;
+}

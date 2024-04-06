@@ -6,11 +6,19 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-item',
   standalone: true,
-  imports: [NzSelectModule, NzButtonModule, NzGridModule, FormsModule, CommonModule, RouterModule],
+  imports: [
+    NzSelectModule,
+    NzButtonModule,
+    NzGridModule,
+    FormsModule,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.css',
 })
@@ -19,9 +27,16 @@ export class ProductItemComponent {
   selectedOption: number = 1;
   options: number[] = [];
 
+  constructor(private cartService: CartService) {}
+
   ngOnInit(): void {
     for (let i = 1; i <= 10; i++) {
       this.options.push(i);
     }
+  }
+
+  updateCart(product: Product) {
+    this.cartService.updateCart(product, this.selectedOption);
+    alert('Added to cart!')
   }
 }
