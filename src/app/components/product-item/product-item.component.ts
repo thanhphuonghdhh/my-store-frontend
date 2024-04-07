@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/models';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,6 +24,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class ProductItemComponent {
   @Input() product!: Product;
+  @Output() addProductAlert: EventEmitter<Product> = new EventEmitter();
   selectedOption: number = 1;
   options: number[] = [];
 
@@ -37,6 +38,6 @@ export class ProductItemComponent {
 
   updateCart(product: Product) {
     this.cartService.updateCart(product, this.selectedOption);
-    alert('Added to cart!')
+    this.addProductAlert.emit(product);
   }
 }

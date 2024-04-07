@@ -18,8 +18,12 @@ export class ProductListComponent {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProductList()
-      .subscribe(res => {this.products = res});
+    this.productService.getProductList().subscribe((res) => {
+      this.products = res;
+    });
+  }
+
+  showAddedAlert(product: Product) {
+    alert('Added ' + product.name + ' to cart!');
   }
 }

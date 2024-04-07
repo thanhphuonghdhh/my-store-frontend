@@ -39,6 +39,7 @@ export class CartComponent {
 
   onQuantityChange(product: Product) {
     if (product.quantity === 0) {
+      alert('Removed ' + product.name + ' from the cart!');
       this.cartService.removeProductInCart(product);
       this.cart = this.cartService.getCart();
     }

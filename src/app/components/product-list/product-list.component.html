@@ -3,6 +3,7 @@
     nz-col
     nzSpan="8"
     *ngFor="let product of products"
+    (addProductAlert)="showAddedAlert($event)"
     [product]="product"
   />
 </div>

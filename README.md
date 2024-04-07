@@ -28,3 +28,7 @@ UserInfo {
 - Product list in cart: http://localhost:4200/cart
 - Product detail: http://localhost:4200/product/:id
 - Checkout confirmation: http://localhost:4200/confirmation
+
+## Updated after review
+- Added decorator @Output.
+- Feedback is not provided when item is removed from cart: Added alert when removed.
